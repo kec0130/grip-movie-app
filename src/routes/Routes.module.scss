@@ -1,6 +1,10 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/sizes';
+
 .app {
-  max-width: 600px;
+  max-width: 1000px;
   height: 100vh;
   margin: 0 auto;
-  background-color: powderblue;
+  padding-top: calc(sizes.$HEADER_H + 20px);
+  background-color: colors.$BACKGROUND;
 }

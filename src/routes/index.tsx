@@ -6,12 +6,14 @@ import styles from './Routes.module.scss'
 
 const App = () => {
   return (
-    <div className={styles.app}>
-      <Routes>
-        <Route path='/' element={<Movies />} />
-        <Route path='favorites' element={<Favorites />} />
-      </Routes>
-      <GNB />
+    <div className={styles.appContainer}>
+      <div className={styles.app}>
+        <Routes>
+          <Route path='/' element={<Movies />} />
+          <Route path='favorites' element={<Favorites />} />
+        </Routes>
+        <GNB />
+      </div>
     </div>
   )
 }

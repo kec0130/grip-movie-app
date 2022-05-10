@@ -1,0 +1,12 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/sizes';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: sizes.$HEADER_H;
+  background-color: colors.$GNB;
+  border-bottom: 1px solid colors.$GRAYE;
+}
