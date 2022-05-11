@@ -8,7 +8,7 @@ export interface IMovie {
 
 export interface IMovieAPIRes {
   Response: string
-  Search: IMovie[]
-  totalResults: string
+  Search?: IMovie[]
+  totalResults?: string
   Error?: string
 }
