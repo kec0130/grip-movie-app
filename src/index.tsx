@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { RecoilRoot } from 'recoil'
 
-import Routes from './routes'
+import App from './App'
 import reportWebVitals from './reportWebVitals'
 import './styles/index.scss'
 
@@ -12,7 +12,7 @@ root.render(
   <React.StrictMode>
     <RecoilRoot>
       <BrowserRouter>
-        <Routes />
+        <App />
       </BrowserRouter>
     </RecoilRoot>
   </React.StrictMode>

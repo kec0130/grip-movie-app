@@ -23,4 +23,5 @@ const GNB = () => {
     </nav>
   )
 }
+
 export default GNB

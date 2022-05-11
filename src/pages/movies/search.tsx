@@ -4,7 +4,7 @@ import { inputValueState, keywordState, pageState, searchResultState } from 'sta
 import { getMovieSearchApi } from 'services/movie'
 
 import { SearchIcon } from 'assets/svgs'
-import styles from './Movies.module.scss'
+import styles from './movies.module.scss'
 
 const MovieSearch = () => {
   const [inputValue, setInputValue] = useRecoilState(inputValueState)
@@ -53,4 +53,5 @@ const MovieSearch = () => {
     </form>
   )
 }
+
 export default MovieSearch

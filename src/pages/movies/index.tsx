@@ -1,10 +1,10 @@
 import { useRecoilValue } from 'recoil'
 import { searchResultState } from 'states/movie'
 
-import Header from 'components/Header'
+import Header from 'components/header'
 import MovieSearch from './search'
 import MovieItem from './item'
-import styles from './Movies.module.scss'
+import styles from './movies.module.scss'
 
 const Movies = () => {
   const movies = useRecoilValue(searchResultState)
@@ -25,4 +25,5 @@ const Movies = () => {
     </>
   )
 }
+
 export default Movies

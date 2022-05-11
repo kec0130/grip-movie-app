@@ -1,4 +1,4 @@
-import styles from './Header.module.scss'
+import styles from './header.module.scss'
 
 interface HeaderProps {
   children?: JSX.Element | string

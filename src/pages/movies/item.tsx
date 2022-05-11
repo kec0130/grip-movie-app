@@ -1,6 +1,6 @@
 import { IMovie } from 'types/movie'
 import { HeartBorderIcon } from 'assets/svgs'
-import styles from './Movies.module.scss'
+import styles from './movies.module.scss'
 
 interface MovieItemProps {
   movie: Omit<IMovie, 'imdbID'>
@@ -25,4 +25,5 @@ const MovieItem = ({ movie }: MovieItemProps) => {
     </li>
   )
 }
+
 export default MovieItem
