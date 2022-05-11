@@ -3,14 +3,12 @@ import GNB from 'components/GNB'
 
 const PageLayout = () => {
   return (
-    <div>
-      <main>
-        <Outlet />
-      </main>
+    <>
+      <Outlet />
       <footer>
         <GNB />
       </footer>
-    </div>
+    </>
   )
 }
 export default PageLayout

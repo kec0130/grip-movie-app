@@ -1,7 +1,7 @@
 import styles from './Header.module.scss'
 
 interface HeaderProps {
-  children: JSX.Element | string
+  children?: JSX.Element | string
 }
 
 const Header = ({ children }: HeaderProps) => {

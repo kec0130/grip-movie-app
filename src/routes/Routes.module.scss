@@ -3,8 +3,8 @@
 
 .app {
   max-width: 1000px;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0 auto;
-  padding-top: calc(sizes.$HEADER_H + 20px);
+  padding: calc(sizes.$HEADER_H + 20px) 0;
   background-color: colors.$BACKGROUND;
 }
