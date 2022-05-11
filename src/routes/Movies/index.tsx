@@ -1,7 +1,10 @@
-import Header from 'components/Header'
-import { useState, ChangeEvent, FormEvent } from 'react'
+import { useState, FormEvent } from 'react'
 import { getMovieSearchApi } from 'services/movie'
 import { IMovie } from 'types/movie'
+import Header from 'components/Header'
+import MovieSearch from './search'
+import MovieItem from './item'
+import styles from './Movies.module.scss'
 
 const Movies = () => {
   const [movies, setMovies] = useState<IMovie[]>([])
@@ -18,10 +21,6 @@ const Movies = () => {
     setMovies(response.data.Search)
   }
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.currentTarget.value)
-  }
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!inputValue) return
@@ -30,41 +29,19 @@ const Movies = () => {
   }
 
   return (
-    <div>
+    <>
       <Header>
-        <form onSubmit={handleSubmit}>
-          <input
-            type='text'
-            value={inputValue}
-            onChange={handleInputChange}
-            placeholder='영화 제목을 입력하세요.'
-            style={{ width: '100%', height: '100%' }}
-          />
-        </form>
+        <MovieSearch inputValue={inputValue} setInputValue={setInputValue} handleSubmit={handleSubmit} />
       </Header>
       <main>
-        <div>
-          {!movies.length && <div>검색 결과가 없습니다.</div>}
-          <ul>
-            {movies.map((item) => {
-              const { Poster, Title, Year, Type, imdbID } = item
-              return (
-                <li key={imdbID}>
-                  <div>
-                    <img src={Poster} alt='movie poster' />
-                  </div>
-                  <div>
-                    <div>{Title}</div>
-                    <div>{Year}</div>
-                    <div>{Type}</div>
-                  </div>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
+        {!movies.length && <div className={styles.noResult}>검색 결과가 없습니다.</div>}
+        <ul>
+          {movies.map((movie) => (
+            <MovieItem key={movie.imdbID} movie={movie} />
+          ))}
+        </ul>
       </main>
-    </div>
+    </>
   )
 }
 export default Movies

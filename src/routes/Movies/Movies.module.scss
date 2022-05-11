@@ -1,0 +1,58 @@
+@use '/src/styles/constants/colors';
+
+.searchForm {
+  display: flex;
+  justify-content: space-between;
+
+  .inputWrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  input {
+    flex: 1;
+    padding: 10px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: lightgray;
+    border-radius: 5px;
+  }
+}
+
+.movieWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px 30px;
+  background-color: colors.$WHITE;
+  border-radius: 20px;
+
+  + .movieWrapper {
+    margin-top: 20px;
+  }
+
+  .movieInfo {
+    display: flex;
+    margin-right: 20px;
+  }
+
+  img {
+    width: 100px;
+    margin-right: 20px;
+    border-radius: 10px;
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+.noResult {
+  margin-top: 240px;
+  text-align: center;
+}
