@@ -1,18 +1,19 @@
 import { Route, Routes } from 'react-router-dom'
 import Movies from './Movies'
 import Favorites from './Favorites'
-import GNB from 'components/GNB'
 import styles from './Routes.module.scss'
+import PageLayout from 'components/PageLayout'
 
 const App = () => {
   return (
     <div className={styles.appContainer}>
       <div className={styles.app}>
         <Routes>
-          <Route path='/' element={<Movies />} />
-          <Route path='favorites' element={<Favorites />} />
+          <Route path='/' element={<PageLayout />}>
+            <Route path='/' element={<Movies />} />
+            <Route path='favorites' element={<Favorites />} />
+          </Route>
         </Routes>
-        <GNB />
       </div>
     </div>
   )
