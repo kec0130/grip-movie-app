@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
-import { keywordState, pageState, searchResultState } from 'states/movie'
+import { keywordState, pageState, searchResultState, totalCountState } from 'states/movie'
 import { getMovieSearchApi } from 'services/movie'
 
 import Header from 'components/header'
@@ -11,10 +11,13 @@ import styles from './movies.module.scss'
 const Movies = () => {
   const keyword = useRecoilValue(keywordState)
   const [page, setPage] = useRecoilState(pageState)
+  const [totalCount, setTotalCount] = useRecoilState(totalCountState)
   const [movies, setMovies] = useRecoilState(searchResultState)
   const resetMovies = useResetRecoilState(searchResultState)
 
-  const handleClick = () => {
+  // TODO: scroll 방식으로 변경
+  const handleNextClick = () => {
+    if (page >= Math.ceil(totalCount / 10)) return
     setPage((prev) => prev + 1)
   }
 
@@ -25,16 +28,19 @@ const Movies = () => {
         page,
       })
 
-      if (!response.data.Search) {
+      const { Search, totalResults } = response.data
+
+      if (!Search || !totalResults) {
         resetMovies()
         return
       }
 
-      setMovies(response.data.Search)
+      setMovies(Search)
+      setTotalCount(Number(totalResults))
     }
 
     getSearchResult()
-  }, [keyword, page, setMovies, resetMovies])
+  }, [keyword, page, setMovies, resetMovies, setTotalCount])
 
   return (
     <>
@@ -51,7 +57,7 @@ const Movies = () => {
                 <MovieItem key={movie.imdbID} movie={movie} />
               ))}
             </ul>
-            <button type='button' onClick={handleClick}>
+            <button type='button' onClick={handleNextClick}>
               Next
             </button>
           </>

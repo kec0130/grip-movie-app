@@ -1,24 +1,27 @@
 import { atom } from 'recoil'
 import { IMovie } from 'types/movie'
 
-const keywordState = atom({
+export const keywordState = atom({
   key: 'keywordState',
   default: '',
 })
 
-const pageState = atom({
+export const pageState = atom({
   key: 'pageState',
   default: 1,
 })
 
-const searchResultState = atom<IMovie[]>({
+export const searchResultState = atom<IMovie[]>({
   key: 'searchResultState',
   default: [],
 })
 
-const inputValueState = atom({
+export const totalCountState = atom({
+  key: 'totalCountState',
+  default: 0,
+})
+
+export const inputValueState = atom({
   key: 'inputValueState',
   default: '',
 })
-
-export { keywordState, pageState, searchResultState, inputValueState }
