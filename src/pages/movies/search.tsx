@@ -1,17 +1,14 @@
-import { ChangeEvent, FormEvent, useEffect } from 'react'
-import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil'
-import { inputValueState, keywordState, pageState, searchResultState } from 'states/movie'
-import { getMovieSearchApi } from 'services/movie'
+import { ChangeEvent, FormEvent } from 'react'
+import { useRecoilState, useSetRecoilState, useResetRecoilState } from 'recoil'
+import { inputValueState, keywordState, pageState } from 'states/movie'
 
 import { SearchIcon } from 'assets/svgs'
 import styles from './movies.module.scss'
 
 const MovieSearch = () => {
   const [inputValue, setInputValue] = useRecoilState(inputValueState)
-  const [keyword, setKeyword] = useRecoilState(keywordState)
-  const [page, setPage] = useRecoilState(pageState)
-  const setMovies = useSetRecoilState(searchResultState)
-  const resetMovies = useResetRecoilState(searchResultState)
+  const setKeyword = useSetRecoilState(keywordState)
+  const resetPage = useResetRecoilState(pageState)
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value)
@@ -22,26 +19,8 @@ const MovieSearch = () => {
     if (!inputValue.trim()) return
 
     setKeyword(inputValue)
-    setPage(1)
+    resetPage()
   }
-
-  useEffect(() => {
-    const getSearchResult = async () => {
-      const response = await getMovieSearchApi({
-        s: keyword,
-        page,
-      })
-
-      if (!response.data.Search) {
-        resetMovies()
-        return
-      }
-
-      setMovies(response.data.Search)
-    }
-
-    getSearchResult()
-  }, [keyword, page, setMovies, resetMovies])
 
   return (
     <form onSubmit={handleSubmit} className={styles.searchForm}>
