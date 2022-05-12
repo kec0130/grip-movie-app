@@ -3,22 +3,26 @@
 .searchForm {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 
   .inputWrapper {
     display: flex;
     align-items: center;
-    width: 80%;
+    width: 100%;
   }
 
   input {
     width: 100%;
     padding: 10px;
+    font-size: 18px;
   }
 
   button {
-    padding: 10px 20px;
+    width: 80px;
+    padding: 10px;
     background-color: lightgray;
     border-radius: 5px;
+    font-size: 16px;
   }
 }
 

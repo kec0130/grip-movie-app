@@ -4,6 +4,7 @@ import { favoriteMovieState } from 'states/movie'
 
 import Header from 'components/header'
 import MovieItem from 'pages/movies/item'
+import styles from './favorites.module.scss'
 
 const Favorites = () => {
   const [favoriteMovies, setFavoriteMovies] = useRecoilState(favoriteMovieState)
@@ -18,12 +19,14 @@ const Favorites = () => {
 
   return (
     <>
-      <Header>내 즐겨찾기</Header>
+      <Header>
+        <div className={styles.header}>내 즐겨찾기</div>
+      </Header>
       <main>
         {favoriteMovies.map((movie) => (
           <MovieItem key={movie.imdbID} movie={movie} />
         ))}
-        {!favoriteMovies.length && <span>즐겨찾기한 영화가 없습니다.</span>}
+        {!favoriteMovies.length && <div className={styles.noResult}>즐겨찾기한 영화가 없습니다.</div>}
       </main>
     </>
   )

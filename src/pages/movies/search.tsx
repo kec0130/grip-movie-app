@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent } from 'react'
 import { useRecoilState, useSetRecoilState, useResetRecoilState } from 'recoil'
-import { inputValueState, keywordState, pageState } from 'states/movie'
+import { inputValueState, keywordState, pageState, searchResultState } from 'states/movie'
 
 import { SearchIcon } from 'assets/svgs'
 import styles from './movies.module.scss'
@@ -9,6 +9,7 @@ const MovieSearch = () => {
   const [inputValue, setInputValue] = useRecoilState(inputValueState)
   const setKeyword = useSetRecoilState(keywordState)
   const resetPage = useResetRecoilState(pageState)
+  const resetMovies = useResetRecoilState(searchResultState)
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value)
@@ -18,8 +19,9 @@ const MovieSearch = () => {
     e.preventDefault()
     if (!inputValue.trim()) return
 
-    setKeyword(inputValue)
+    resetMovies()
     resetPage()
+    setKeyword(inputValue)
   }
 
   return (
