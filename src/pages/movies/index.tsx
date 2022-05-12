@@ -8,6 +8,8 @@ import MovieSearch from './search'
 import MovieItem from './item'
 import styles from './movies.module.scss'
 
+const MOVIES_PER_PAGE = 10
+
 const Movies = () => {
   const keyword = useRecoilValue(keywordState)
   const [page, setPage] = useRecoilState(pageState)
@@ -17,7 +19,7 @@ const Movies = () => {
 
   // TODO: scroll 방식으로 변경
   const handleNextClick = () => {
-    if (page >= Math.ceil(totalCount / 10)) return
+    if (page >= Math.ceil(totalCount / MOVIES_PER_PAGE)) return
     setPage((prev) => prev + 1)
   }
 
@@ -49,7 +51,7 @@ const Movies = () => {
       </Header>
       <main>
         {!movies.length ? (
-          <div className={styles.noResult}>검색 결과가 없습니다.</div>
+          <span className={styles.noResult}>검색 결과가 없습니다.</span>
         ) : (
           <>
             <ul>

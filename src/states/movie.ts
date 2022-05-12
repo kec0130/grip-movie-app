@@ -25,3 +25,8 @@ export const inputValueState = atom({
   key: 'inputValueState',
   default: '',
 })
+
+export const favoriteMovieState = atom<IMovie[]>({
+  key: 'favoriteMovieState',
+  default: [],
+})
