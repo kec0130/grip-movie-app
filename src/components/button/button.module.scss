@@ -1,0 +1,19 @@
+@use '/src/styles/constants/colors';
+
+.button {
+  width: 80px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.primary {
+  background-color: colors.$PINK;
+  border: 2px solid colors.$PINK;
+  color: colors.$WHITE;
+}
+
+.secondary {
+  border: 2px solid colors.$PINK;
+  color: colors.$PINK;
+}

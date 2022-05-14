@@ -1,13 +1,14 @@
 import { ChangeEvent, FormEvent } from 'react'
-import { useRecoilState, useSetRecoilState, useResetRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { inputValueState, keywordState, pageState, searchResultState } from 'states/movie'
 
+import Button from 'components/button'
 import { SearchIcon } from 'assets/svgs'
 import styles from './movies.module.scss'
 
 const MovieSearch = () => {
   const [inputValue, setInputValue] = useRecoilState(inputValueState)
-  const setKeyword = useSetRecoilState(keywordState)
+  const [keyword, setKeyword] = useRecoilState(keywordState)
   const resetPage = useResetRecoilState(pageState)
   const resetMovies = useResetRecoilState(searchResultState)
 
@@ -17,7 +18,7 @@ const MovieSearch = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!inputValue.trim()) return
+    if (!inputValue.trim() || inputValue === keyword) return
 
     resetMovies()
     resetPage()
@@ -30,7 +31,7 @@ const MovieSearch = () => {
         <SearchIcon />
         <input type='text' value={inputValue} onChange={handleInputChange} placeholder='영화 제목을 입력하세요.' />
       </div>
-      <button type='submit'>검색</button>
+      <Button value='검색' type='submit' buttonStyle='primary' />
     </form>
   )
 }
