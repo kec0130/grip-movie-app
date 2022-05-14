@@ -36,9 +36,10 @@ const Movies = () => {
   const lastPage = useMemo(() => Math.ceil(totalCount / MOVIES_PER_PAGE), [totalCount])
   const prevKeyword = usePrevious(keyword)
   const prevPage = usePrevious(page)
+  const isFavorite = favoriteMovies.includes(selectedMovie)
 
   const toggleFavorite = () => {
-    if (favoriteMovies.includes(selectedMovie)) {
+    if (isFavorite) {
       setFavoriteMovies((prev) => prev.filter((item) => item.imdbID !== selectedMovie.imdbID))
     } else {
       setFavoriteMovies((prev) => [...prev, selectedMovie])
@@ -83,14 +84,6 @@ const Movies = () => {
     }
   }, [lastPage, page, setPage])
 
-  useEffect(() => {
-    setFavoriteMovies(JSON.parse(localStorage.getItem('favoriteMovies') || '[]'))
-  }, [setFavoriteMovies])
-
-  useEffect(() => {
-    localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies))
-  }, [favoriteMovies])
-
   return (
     <>
       <Header>
@@ -104,7 +97,12 @@ const Movies = () => {
         </ul>
         {!movies.length && <div className={styles.noResult}>검색 결과가 없습니다.</div>}
       </main>
-      {isModalOpen && <Modal text='즐겨찾기에 추가하시겠습니까?' onConfirm={toggleFavorite} />}
+      {isModalOpen && (
+        <Modal
+          text={isFavorite ? '이 영화를 즐겨찾기에서 삭제할까요?' : '이 영화를 즐겨찾기에 추가할까요?'}
+          onConfirm={toggleFavorite}
+        />
+      )}
     </>
   )
 }

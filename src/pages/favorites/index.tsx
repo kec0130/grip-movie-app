@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 
 import { favoriteMovieState, selectedMovieState } from 'states/movie'
@@ -23,14 +23,6 @@ const Favorites = () => {
     setIsModalOpen(false)
   }
 
-  useEffect(() => {
-    setFavoriteMovies(JSON.parse(localStorage.getItem('favoriteMovies') || '[]'))
-  }, [setFavoriteMovies])
-
-  useEffect(() => {
-    localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies))
-  }, [favoriteMovies])
-
   return (
     <>
       <Header>
@@ -42,7 +34,7 @@ const Favorites = () => {
         ))}
         {!favoriteMovies.length && <div className={styles.noResult}>즐겨찾기한 영화가 없습니다.</div>}
       </main>
-      {isModalOpen && <Modal text='즐겨찾기에서 삭제하시겠습니까?' onConfirm={toggleFavorite} />}
+      {isModalOpen && <Modal text='이 영화를 즐겨찾기에서 삭제할까요?' onConfirm={toggleFavorite} />}
     </>
   )
 }
