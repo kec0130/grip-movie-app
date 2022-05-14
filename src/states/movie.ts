@@ -30,3 +30,14 @@ export const favoriteMovieState = atom<IMovie[]>({
   key: 'favoriteMovieState',
   default: [],
 })
+
+export const selectedMovieState = atom<IMovie>({
+  key: 'selectedMovieState',
+  default: {
+    Title: '',
+    Year: '',
+    Type: '',
+    Poster: '',
+    imdbID: '',
+  },
+})

@@ -1,52 +1,39 @@
-import { useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
-import { favoriteMovieState } from 'states/movie'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { favoriteMovieState, selectedMovieState } from 'states/movie'
 import { IMovie } from 'types/movie'
 
 import { HeartBorderIcon, HeartFillIcon } from 'assets/svgs'
+import NoImage from 'assets/images/no_image.png'
 import styles from './movies.module.scss'
+import { modalOpenState } from 'states/modal'
 
 interface MovieItemProps {
   movie: IMovie
 }
 
-const NO_IMAGE_URL = 'https://via.placeholder.com/150x210/B2B2B2/FFFFFF?text=No+Image'
-
 const MovieItem = ({ movie }: MovieItemProps) => {
-  const { Poster, Title, Year, Type, imdbID } = movie
-  const [favoriteMovies, setFavoriteMovies] = useRecoilState(favoriteMovieState)
-  const [isLiked, setIsLiked] = useState(favoriteMovies.includes(movie))
+  const { Poster, Title, Year, Type } = movie
+  const favoriteMovies = useRecoilValue(favoriteMovieState)
+  const setSelectedMovie = useSetRecoilState(selectedMovieState)
+  const setIsModalOpen = useSetRecoilState(modalOpenState)
 
-  const handleLikeClick = () => {
-    if (isLiked) {
-      setFavoriteMovies((prev) => prev.filter((item) => item.imdbID !== imdbID))
-    } else {
-      setFavoriteMovies((prev) => [...prev, movie])
-    }
-
-    setIsLiked((prev) => !prev)
+  const handleMovieClick = () => {
+    setIsModalOpen(true)
+    setSelectedMovie(movie)
   }
-
-  useEffect(() => {
-    setFavoriteMovies(JSON.parse(localStorage.getItem('favoriteMovies') || '[]'))
-  }, [setFavoriteMovies])
-
-  useEffect(() => {
-    localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies))
-  }, [favoriteMovies])
 
   return (
     <li className={styles.movieWrapper}>
-      <div className={styles.movieInfo}>
-        <img src={Poster === 'N/A' ? NO_IMAGE_URL : Poster} alt='poster' />
-        <div>
-          <h3 className={styles.title}>{Title}</h3>
-          <div className={styles.year}>{Year}</div>
-          <div className={styles.type}>{Type}</div>
+      <button type='button' onClick={handleMovieClick} className={styles.movieItem}>
+        <div className={styles.movieInfo}>
+          <img src={Poster === 'N/A' ? NoImage : Poster} alt='poster' />
+          <div className={styles.movieInfoText}>
+            <h3>{Title}</h3>
+            <div>{Year}</div>
+            <div>{Type}</div>
+          </div>
         </div>
-      </div>
-      <button type='button' onClick={handleLikeClick} aria-label='like button'>
-        {isLiked ? <HeartFillIcon /> : <HeartBorderIcon />}
+        {favoriteMovies.includes(movie) ? <HeartFillIcon /> : <HeartBorderIcon />}
       </button>
     </li>
   )

@@ -16,23 +16,11 @@
     padding: 10px;
     font-size: 18px;
   }
-
-  button {
-    width: 80px;
-    padding: 10px;
-    background-color: lightgray;
-    border-radius: 5px;
-    font-size: 16px;
-  }
 }
 
 .movieWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 90%;
   margin: 0 auto;
-  padding: 10px 30px;
   background-color: colors.$WHITE;
   border-radius: 20px;
 
@@ -40,20 +28,31 @@
     margin-top: 20px;
   }
 
-  .movieInfo {
+  .movieItem {
     display: flex;
-    margin-right: 20px;
-  }
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 30px;
 
-  img {
-    width: 100px;
-    margin-right: 20px;
-    border-radius: 10px;
-  }
+    .movieInfo {
+      display: flex;
+    }
 
-  .title {
-    font-size: 20px;
-    font-weight: 600;
+    img {
+      width: 100px;
+      border-radius: 10px;
+    }
+
+    .movieInfoText {
+      padding: 10px 20px;
+      text-align: start;
+
+      :first-child {
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
   }
 }
 
