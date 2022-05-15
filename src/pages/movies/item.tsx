@@ -2,10 +2,10 @@ import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { favoriteMovieState, selectedMovieState } from 'states/movie'
 import { IMovie } from 'types/movie'
 
+import { modalOpenState } from 'states/modal'
 import { HeartBorderIcon, HeartFillIcon } from 'assets/svgs'
 import NoImage from 'assets/images/no_image.png'
 import styles from './movies.module.scss'
-import { modalOpenState } from 'states/modal'
 
 interface MovieItemProps {
   movie: IMovie
@@ -33,7 +33,7 @@ const MovieItem = ({ movie }: MovieItemProps) => {
             <div>{Type}</div>
           </div>
         </div>
-        {favoriteMovies.includes(movie) ? <HeartFillIcon /> : <HeartBorderIcon />}
+        <div>{favoriteMovies.includes(movie) ? <HeartFillIcon className={styles.liked} /> : <HeartBorderIcon />}</div>
       </button>
     </li>
   )

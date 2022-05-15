@@ -1,10 +1,15 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/position';
+
 .header {
   margin: auto 0;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
 }
 
 .noResult {
-  margin-top: 240px;
+  @include position.middleBox;
   text-align: center;
+  font-size: 18px;
+  color: colors.$GRAY3;
 }
