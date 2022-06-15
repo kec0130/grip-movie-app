@@ -4,12 +4,5 @@
 .header {
   margin: auto 0;
   font-size: 18px;
-  font-weight: 600;
-}
-
-.noResult {
-  @include position.middleBox;
-  text-align: center;
-  font-size: 18px;
-  color: colors.$GRAY3;
+  font-weight: 500;
 }

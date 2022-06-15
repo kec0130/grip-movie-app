@@ -15,4 +15,5 @@ const MovieInfo = ({ title, year, type }: MovieInfoProps) => {
     </div>
   )
 }
+
 export default MovieInfo

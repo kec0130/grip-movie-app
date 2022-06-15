@@ -1,8 +1,5 @@
 import { atom } from 'recoil'
-import { recoilPersist } from 'recoil-persist'
 import { IMovie } from 'types/movie'
-
-const { persistAtom } = recoilPersist()
 
 export const keywordState = atom({
   key: 'keywordState',
@@ -32,16 +29,4 @@ export const inputValueState = atom({
 export const favoriteMovieState = atom<IMovie[]>({
   key: 'favoriteMovies',
   default: [],
-  effects_UNSTABLE: [persistAtom],
-})
-
-export const selectedMovieState = atom<IMovie>({
-  key: 'selectedMovieState',
-  default: {
-    Title: '',
-    Year: '',
-    Type: '',
-    Poster: '',
-    imdbID: '',
-  },
 })

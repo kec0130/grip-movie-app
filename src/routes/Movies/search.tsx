@@ -2,7 +2,6 @@ import { ChangeEvent, FormEvent } from 'react'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 import { inputValueState, keywordState, pageState, searchResultState } from 'states/movie'
 
-import Button from 'components/Button'
 import { SearchIcon } from 'assets/svgs'
 import styles from './movies.module.scss'
 
@@ -31,7 +30,6 @@ const MovieSearch = () => {
         <SearchIcon />
         <input type='text' value={inputValue} onChange={handleInputChange} placeholder='영화 제목을 입력하세요.' />
       </div>
-      <Button value='검색' type='submit' buttonStyle='primary' />
     </form>
   )
 }
