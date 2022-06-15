@@ -1,12 +1,22 @@
+import { useEffect, useState } from 'react'
+import store from 'store'
+
 import { useRecoil } from 'hooks/useRecoil'
 import { favoriteMovieState } from 'states/movie'
 
 import Header from 'components/Header'
 import MovieItem from 'components/MovieItem'
+import Error from 'components/Error'
 import styles from './favorites.module.scss'
 
 const Favorites = () => {
-  const [favoriteMovies] = useRecoil(favoriteMovieState)
+  const [isLoading, setIsLoading] = useState(true)
+  const [favoriteMovies, setFavoriteMovies] = useRecoil(favoriteMovieState)
+
+  useEffect(() => {
+    setFavoriteMovies(store.get('favoriteMovies') || [])
+    setIsLoading(false)
+  }, [setFavoriteMovies])
 
   return (
     <>
@@ -17,7 +27,7 @@ const Favorites = () => {
         {favoriteMovies.map((movie) => (
           <MovieItem key={movie.imdbID} movie={movie} />
         ))}
-        {!favoriteMovies.length && <div className={styles.noResult}>즐겨찾기한 영화가 없습니다.</div>}
+        {!isLoading && !favoriteMovies.length && <Error message='즐겨찾기한 영화가 없습니다.' />}
       </main>
     </>
   )

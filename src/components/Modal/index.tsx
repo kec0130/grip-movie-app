@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { useClickAway } from 'react-use'
+import store from 'store'
 
 import { useRecoil } from 'hooks/useRecoil'
 import { favoriteMovieState } from 'states/movie'
@@ -25,13 +26,17 @@ const Modal = ({ movie, isFavorite, closeModal }: ModalProps) => {
   }
 
   const addFavoriteMovie = () => {
-    setFavoriteMovies((prev) => [...prev, movie])
-    store.set('favoriteMovies', favoriteMovies)
+    setFavoriteMovies((prev) => [movie, ...prev])
   }
 
   const deleteFavoriteMovie = () => {
     setFavoriteMovies((prev) => prev.filter((item) => item.imdbID !== imdbID))
+  }
+
+  const toggleFavorite = () => {
+    isFavorite ? deleteFavoriteMovie() : addFavoriteMovie()
     store.set('favoriteMovies', favoriteMovies)
+    closeModal()
   }
 
   useClickAway(modalRef, closeModal)
@@ -44,7 +49,7 @@ const Modal = ({ movie, isFavorite, closeModal }: ModalProps) => {
             <MovieInfo title={title} year={year} type={type} />
           </div>
           <div>
-            <button type='button' onClick={isFavorite ? deleteFavoriteMovie : addFavoriteMovie}>
+            <button type='button' onClick={toggleFavorite}>
               {isFavorite ? '즐겨찾기 제거' : '즐겨찾기'}
             </button>
             <button type='button' onClick={closeModal}>
