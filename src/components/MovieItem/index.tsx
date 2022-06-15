@@ -1,10 +1,13 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { favoriteMovieState, selectedMovieState } from 'states/movie'
-import { IMovie } from 'types/movie'
+import { useState } from 'react'
 
-import { modalOpenState } from 'states/modal'
-import { HeartBorderIcon, HeartFillIcon } from 'assets/svgs'
+import { useRecoil } from 'hooks/useRecoil'
+import { favoriteMovieState } from 'states/movie'
+import { IMovie } from 'types/movie'
+import { handleImgError } from 'utils/handleImgError'
+
+import Modal from 'components/Modal'
 import NoImage from 'assets/images/no_image.png'
+import { HeartBorderIcon, HeartFillIcon } from 'assets/svgs'
 import styles from './movieItem.module.scss'
 
 interface MovieItemProps {
@@ -12,30 +15,33 @@ interface MovieItemProps {
 }
 
 const MovieItem = ({ movie }: MovieItemProps) => {
-  const { Poster, Title, Year, Type } = movie
-  const favoriteMovies = useRecoilValue(favoriteMovieState)
-  const setSelectedMovie = useSetRecoilState(selectedMovieState)
-  const setIsModalOpen = useSetRecoilState(modalOpenState)
+  const { Poster: poster, Title: title, Year: year, Type: type, imdbID } = movie
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [favoriteMovies] = useRecoil(favoriteMovieState)
 
-  const handleMovieClick = () => {
-    setIsModalOpen(true)
-    setSelectedMovie(movie)
-  }
+  const isFavorite = !!favoriteMovies.find((item) => item.imdbID === imdbID)
+
+  const openModal = () => setIsModalOpen(true)
+
+  const closeModal = () => setIsModalOpen(false)
 
   return (
-    <li className={styles.movieWrapper}>
-      <button type='button' onClick={handleMovieClick} className={styles.movieItem}>
-        <div className={styles.movieInfo}>
-          <img src={Poster === 'N/A' ? NoImage : Poster} alt='poster' />
-          <div className={styles.movieInfoText}>
-            <h3>{Title}</h3>
-            <div>{Year}</div>
-            <div>{Type}</div>
+    <>
+      <li className={styles.movieWrapper}>
+        <button type='button' onClick={openModal} className={styles.movieItem}>
+          <div className={styles.movieInfo}>
+            <img src={poster} alt='poster' onError={(e) => handleImgError(e, NoImage)} />
+            <div className={styles.movieInfoText}>
+              <h3>{title}</h3>
+              <div>{year}</div>
+              <div>{type}</div>
+            </div>
           </div>
-        </div>
-        <div>{favoriteMovies.includes(movie) ? <HeartFillIcon className={styles.liked} /> : <HeartBorderIcon />}</div>
-      </button>
-    </li>
+          <div>{isFavorite ? <HeartFillIcon className={styles.liked} /> : <HeartBorderIcon />}</div>
+        </button>
+      </li>
+      {isModalOpen && <Modal movie={movie} isFavorite={isFavorite} closeModal={closeModal} />}
+    </>
   )
 }
 

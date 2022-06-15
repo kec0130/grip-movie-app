@@ -1,21 +1,12 @@
 import { useEffect, useMemo } from 'react'
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import { usePrevious } from 'react-use'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 
-import {
-  favoriteMovieState,
-  keywordState,
-  pageState,
-  searchResultState,
-  selectedMovieState,
-  totalCountState,
-} from 'states/movie'
-import { modalOpenState } from 'states/modal'
-import { useFirstRender } from 'hooks'
+import { keywordState, pageState, searchResultState, totalCountState } from 'states/movie'
 import { getMovieSearchApi } from 'services/movie'
+import { useFirstRender } from 'hooks'
 
 import Header from 'components/Header'
-import Modal from 'components/Modal'
 import MovieItem from 'components/MovieItem'
 import MovieSearch from './search'
 import styles from './movies.module.scss'
@@ -28,24 +19,11 @@ const Movies = () => {
   const [totalCount, setTotalCount] = useRecoilState(totalCountState)
   const [movies, setMovies] = useRecoilState(searchResultState)
   const resetMovies = useResetRecoilState(searchResultState)
-  const [favoriteMovies, setFavoriteMovies] = useRecoilState(favoriteMovieState)
-  const selectedMovie = useRecoilValue(selectedMovieState)
-  const [isModalOpen, setIsModalOpen] = useRecoilState(modalOpenState)
 
   const firstRender = useFirstRender()
   const lastPage = useMemo(() => Math.ceil(totalCount / MOVIES_PER_PAGE), [totalCount])
   const prevKeyword = usePrevious(keyword)
   const prevPage = usePrevious(page)
-  const isFavorite = favoriteMovies.includes(selectedMovie)
-
-  const toggleFavorite = () => {
-    if (isFavorite) {
-      setFavoriteMovies((prev) => prev.filter((item) => item.imdbID !== selectedMovie.imdbID))
-    } else {
-      setFavoriteMovies((prev) => [...prev, selectedMovie])
-    }
-    setIsModalOpen(false)
-  }
 
   useEffect(() => {
     if (firstRender) return
@@ -97,12 +75,6 @@ const Movies = () => {
         </ul>
         {!movies.length && <div className={styles.noResult}>검색 결과가 없습니다.</div>}
       </main>
-      {isModalOpen && (
-        <Modal
-          text={isFavorite ? '이 영화를 즐겨찾기에서 삭제할까요?' : '이 영화를 즐겨찾기에 추가할까요?'}
-          onConfirm={toggleFavorite}
-        />
-      )}
     </>
   )
 }

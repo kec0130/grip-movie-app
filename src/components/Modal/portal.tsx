@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { createPortal } from 'react-dom'
 
 interface PortalProps {
@@ -6,8 +5,8 @@ interface PortalProps {
 }
 
 const ModalPortal = ({ children }: PortalProps) => {
-  const modalRoot = useRef<HTMLDivElement>(document.querySelector('#modal'))
-  return createPortal(children, modalRoot.current as HTMLDivElement)
+  const el = document.getElementById('modal-root') as HTMLElement
+  return createPortal(children, el)
 }
 
 export default ModalPortal
