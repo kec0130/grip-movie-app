@@ -5,7 +5,7 @@ import { inputValueState, keywordState, pageState, searchResultState } from 'sta
 import { SearchIcon } from 'assets/svgs'
 import styles from './movies.module.scss'
 
-const MovieSearch = () => {
+const SearchForm = () => {
   const [inputValue, setInputValue] = useRecoilState(inputValueState)
   const [keyword, setKeyword] = useRecoilState(keywordState)
   const resetPage = useResetRecoilState(pageState)
@@ -34,4 +34,4 @@ const MovieSearch = () => {
   )
 }
 
-export default MovieSearch
+export default SearchForm

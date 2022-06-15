@@ -8,7 +8,7 @@ import { useFirstRender } from 'hooks'
 
 import Header from 'components/Header'
 import MovieItem from 'components/MovieItem'
-import MovieSearch from './search'
+import SearchForm from './searchForm'
 import styles from './movies.module.scss'
 
 const MOVIES_PER_PAGE = 10
@@ -65,7 +65,7 @@ const Movies = () => {
   return (
     <>
       <Header>
-        <MovieSearch />
+        <SearchForm />
       </Header>
       <main>
         <ul>

@@ -3,25 +3,30 @@
 @use '/src/styles/mixins/position';
 
 .searchForm {
-  display: flex;
-  justify-content: space-between;
   width: 100%;
   max-width: sizes.$MAX_WIDTH;
+  background-color: colors.$ITEM_BACKGROUND;
+  border-radius: 30px;
 
   .inputWrapper {
     display: flex;
     align-items: center;
-    width: 100%;
-  }
+    padding: 10px 20px;
 
-  input {
-    width: 100%;
-    padding: 10px;
-    font-size: 18px;
-  }
+    input {
+      width: 100%;
+      padding: 0 12px;
+      font-size: 18px;
+      color: colors.$GRAYE;
 
-  svg {
-    fill: colors.$GRAY6;
+      &::placeholder {
+        color: colors.$GRAYA;
+      }
+    }
+
+    svg {
+      fill: colors.$GRAYA;
+    }
   }
 }
 
