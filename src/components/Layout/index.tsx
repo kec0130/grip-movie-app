@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom'
 import GNB from 'components/GNB'
-import styles from './pageLayout.module.scss'
+import styles from './layout.module.scss'
 
-const PageLayout = () => {
+const Layout = () => {
   return (
     <div className={styles.container}>
       <Outlet />
@@ -13,4 +13,4 @@ const PageLayout = () => {
   )
 }
 
-export default PageLayout
+export default Layout

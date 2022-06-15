@@ -2,8 +2,8 @@ import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { modalOpenState } from 'states/modal'
 import { selectedMovieState } from 'states/movie'
 
+import Button from 'components/Button'
 import ModalPortal from './portal'
-import Button from 'components/button'
 import styles from './modal.module.scss'
 
 interface ModalProps {

@@ -1,7 +1,8 @@
-import cx from 'classnames'
 import { NavLink } from 'react-router-dom'
+import cx from 'classnames'
+
 import { SearchIcon, HeartBorderIcon } from 'assets/svgs'
-import styles from './GNB.module.scss'
+import styles from './gnb.module.scss'
 
 const GNB = () => {
   return (

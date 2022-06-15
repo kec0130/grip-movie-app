@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent } from 'react'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 import { inputValueState, keywordState, pageState, searchResultState } from 'states/movie'
 
-import Button from 'components/button'
+import Button from 'components/Button'
 import { SearchIcon } from 'assets/svgs'
 import styles from './movies.module.scss'
 

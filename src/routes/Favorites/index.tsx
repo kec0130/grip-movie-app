@@ -1,11 +1,10 @@
-// import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 
 import { favoriteMovieState, selectedMovieState } from 'states/movie'
 import { modalOpenState } from 'states/modal'
 
 import Header from 'components/header'
-import MovieItem from 'pages/movies/item'
+import MovieItem from '../Movies/item'
 import Modal from 'components/modal'
 import styles from './favorites.module.scss'
 
