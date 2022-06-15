@@ -6,6 +6,7 @@ import { IMovie } from 'types/movie'
 import { handleImgError } from 'utils/handleImgError'
 
 import Modal from 'components/Modal'
+import MovieInfo from 'components/MovieInfo'
 import NoImage from 'assets/images/no_image.png'
 import { HeartBorderIcon, HeartFillIcon } from 'assets/svgs'
 import styles from './movieItem.module.scss'
@@ -31,11 +32,7 @@ const MovieItem = ({ movie }: MovieItemProps) => {
         <button type='button' onClick={openModal} className={styles.movieItem}>
           <div className={styles.movieInfo}>
             <img src={poster} alt='poster' onError={(e) => handleImgError(e, NoImage)} />
-            <div className={styles.movieInfoText}>
-              <h3>{title}</h3>
-              <span>{year}</span>
-              <span>{type}</span>
-            </div>
+            <MovieInfo title={title} year={year} type={type} />
           </div>
           <div>{isFavorite ? <HeartFillIcon className={styles.liked} /> : <HeartBorderIcon />}</div>
         </button>

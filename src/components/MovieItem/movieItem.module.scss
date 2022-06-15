@@ -6,7 +6,7 @@
   height: sizes.$MOVIE_ITEM_HEIGHT;
   margin: 0 auto;
   overflow: hidden;
-  background-color: #24243b;
+  background-color: colors.$ITEM_BACKGROUND;
   border-radius: sizes.$BORDER_RADIUS;
 
   + .movieWrapper {
@@ -21,36 +21,17 @@
 
     .movieInfo {
       display: flex;
-    }
 
-    img {
-      flex-shrink: 0;
-      width: 110px;
-      height: sizes.$MOVIE_ITEM_HEIGHT;
-      object-fit: cover;
-    }
-
-    .movieInfoText {
-      padding: 16px 0 16px 20px;
-      color: colors.$GRAYE;
-      text-align: start;
-
-      h3 {
-        margin-bottom: 10px;
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 24px;
+      img {
+        flex-shrink: 0;
+        width: 110px;
+        height: sizes.$MOVIE_ITEM_HEIGHT;
+        object-fit: cover;
       }
 
-      span {
-        font-size: 14px;
-        color: colors.$GRAYA;
-
-        + span {
-          padding-left: 7px;
-          margin-left: 7px;
-          border-left: 1px solid colors.$GRAYA;
-        }
+      > div {
+        padding: 16px 0 16px 20px;
+        text-align: start;
       }
     }
 
