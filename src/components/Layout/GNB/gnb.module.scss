@@ -1,0 +1,37 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/sizes';
+
+.gnb {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 20px 16px;
+  background-color: colors.$BACKGROUND;
+
+  ul {
+    display: flex;
+    justify-content: space-around;
+    max-width: sizes.$MAX_WIDTH;
+    margin: 0 auto;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: colors.$GRAYA;
+
+    &.isActive {
+      font-weight: 600;
+      color: colors.$PINK;
+    }
+
+    svg {
+      width: 28px;
+      height: 28px;
+      fill: currentcolor;
+    }
+  }
+}
