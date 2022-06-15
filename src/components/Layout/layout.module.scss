@@ -3,7 +3,42 @@
 
 .container {
   min-height: 100vh;
+  padding: calc(sizes.$HEADER_HEIGHT + 10px) 16px 90px;
   margin: 0 auto;
-  padding: calc(sizes.$HEADER_H + 18px) 16px 90px;
-  background-color: colors.$GRAYD;
+  background-color: colors.$BACKGROUND;
+}
+
+.gnb {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 20px 16px;
+  background-color: colors.$BACKGROUND;
+
+  ul {
+    display: flex;
+    justify-content: space-around;
+    max-width: sizes.$MAX_WIDTH;
+    margin: 0 auto;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: colors.$GRAYA;
+
+    &.isActive {
+      font-weight: 600;
+      color: colors.$PINK;
+    }
+
+    svg {
+      width: 28px;
+      height: 28px;
+      fill: currentcolor;
+    }
+  }
 }

@@ -6,9 +6,7 @@ const Layout = () => {
   return (
     <div className={styles.container}>
       <Outlet />
-      <footer>
-        <GNB />
-      </footer>
+      <GNB />
     </div>
   )
 }
