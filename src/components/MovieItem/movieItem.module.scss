@@ -3,12 +3,11 @@
 
 .movieWrapper {
   max-width: sizes.$MAX_WIDTH;
-  height: 150px;
+  height: sizes.$MOVIE_ITEM_HEIGHT;
   margin: 0 auto;
   overflow: hidden;
-  background-color: colors.$WHITE;
-  border-radius: 16px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 12%), 0 6px 10px 0 rgba(colors.$BLACK, 8%);
+  background-color: #24243b;
+  border-radius: sizes.$BORDER_RADIUS;
 
   + .movieWrapper {
     margin-top: 20px;
@@ -27,30 +26,37 @@
     img {
       flex-shrink: 0;
       width: 110px;
-      height: 150px;
+      height: sizes.$MOVIE_ITEM_HEIGHT;
       object-fit: cover;
     }
 
     .movieInfoText {
-      padding: 16px 0 0 20px;
-      color: colors.$GRAY6;
+      padding: 16px 0 16px 20px;
+      color: colors.$GRAYE;
       text-align: start;
 
-      :first-child {
+      h3 {
         margin-bottom: 10px;
         font-size: 18px;
-        font-weight: 600;
-        color: colors.$GRAY2;
+        font-weight: 500;
+        line-height: 24px;
       }
 
-      :last-child {
-        margin-top: 4px;
+      span {
+        font-size: 14px;
+        color: colors.$GRAYA;
+
+        + span {
+          padding-left: 7px;
+          margin-left: 7px;
+          border-left: 1px solid colors.$GRAYA;
+        }
       }
     }
 
     svg {
       margin: 0 20px 0 10px;
-      fill: colors.$GRAY6;
+      fill: colors.$GRAYA;
 
       &.liked {
         fill: colors.$PINK;

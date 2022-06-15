@@ -33,8 +33,8 @@ const MovieItem = ({ movie }: MovieItemProps) => {
             <img src={poster} alt='poster' onError={(e) => handleImgError(e, NoImage)} />
             <div className={styles.movieInfoText}>
               <h3>{title}</h3>
-              <div>{year}</div>
-              <div>{type}</div>
+              <span>{year}</span>
+              <span>{type}</span>
             </div>
           </div>
           <div>{isFavorite ? <HeartFillIcon className={styles.liked} /> : <HeartBorderIcon />}</div>
