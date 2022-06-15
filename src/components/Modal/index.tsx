@@ -6,6 +6,7 @@ import { favoriteMovieState } from 'states/movie'
 import { IMovie } from 'types/movie'
 
 import ModalPortal from './portal'
+import MovieInfo from 'components/MovieInfo'
 import styles from './modal.module.scss'
 
 interface ModalProps {
@@ -18,6 +19,10 @@ const Modal = ({ movie, isFavorite, closeModal }: ModalProps) => {
   const { Poster: poster, Title: title, Year: year, Type: type, imdbID } = movie
   const [favoriteMovies, setFavoriteMovies] = useRecoil(favoriteMovieState)
   const modalRef = useRef<HTMLDivElement>(null)
+
+  const backgroundPoster = {
+    backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 80%)), url(${poster})`,
+  }
 
   const addFavoriteMovie = () => {
     setFavoriteMovies((prev) => [...prev, movie])
@@ -35,7 +40,9 @@ const Modal = ({ movie, isFavorite, closeModal }: ModalProps) => {
     <ModalPortal>
       <div className={styles.background}>
         <div className={styles.modalWrapper} ref={modalRef}>
-          <div className={styles.movieTitle}>{title}</div>
+          <div className={styles.poster} style={backgroundPoster}>
+            <MovieInfo title={title} year={year} type={type} />
+          </div>
           <div>
             <button type='button' onClick={isFavorite ? deleteFavoriteMovie : addFavoriteMovie}>
               {isFavorite ? '즐겨찾기 제거' : '즐겨찾기'}
