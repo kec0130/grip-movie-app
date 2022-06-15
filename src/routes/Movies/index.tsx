@@ -14,10 +14,10 @@ import { modalOpenState } from 'states/modal'
 import { useFirstRender } from 'hooks'
 import { getMovieSearchApi } from 'services/movie'
 
-import Header from 'components/header'
+import Header from 'components/Header'
+import Modal from 'components/Modal'
+import MovieItem from 'components/MovieItem'
 import MovieSearch from './search'
-import MovieItem from './item'
-import Modal from 'components/modal'
 import styles from './movies.module.scss'
 
 const MOVIES_PER_PAGE = 10

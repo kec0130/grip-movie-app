@@ -5,7 +5,7 @@ import { IMovie } from 'types/movie'
 import { modalOpenState } from 'states/modal'
 import { HeartBorderIcon, HeartFillIcon } from 'assets/svgs'
 import NoImage from 'assets/images/no_image.png'
-import styles from './movies.module.scss'
+import styles from './movieItem.module.scss'
 
 interface MovieItemProps {
   movie: IMovie

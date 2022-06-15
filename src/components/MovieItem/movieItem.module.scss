@@ -1,0 +1,60 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/sizes';
+
+.movieWrapper {
+  max-width: sizes.$MAX_WIDTH;
+  height: 150px;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: colors.$WHITE;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 12%), 0 6px 10px 0 rgba(colors.$BLACK, 8%);
+
+  + .movieWrapper {
+    margin-top: 20px;
+  }
+
+  .movieItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .movieInfo {
+      display: flex;
+    }
+
+    img {
+      flex-shrink: 0;
+      width: 110px;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .movieInfoText {
+      padding: 16px 0 0 20px;
+      color: colors.$GRAY6;
+      text-align: start;
+
+      :first-child {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        color: colors.$GRAY2;
+      }
+
+      :last-child {
+        margin-top: 4px;
+      }
+    }
+
+    svg {
+      margin: 0 20px 0 10px;
+      fill: colors.$GRAY6;
+
+      &.liked {
+        fill: colors.$PINK;
+      }
+    }
+  }
+}

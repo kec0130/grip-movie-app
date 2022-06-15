@@ -3,9 +3,9 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { favoriteMovieState, selectedMovieState } from 'states/movie'
 import { modalOpenState } from 'states/modal'
 
-import Header from 'components/header'
-import MovieItem from '../Movies/item'
-import Modal from 'components/modal'
+import Header from 'components/Header'
+import Modal from 'components/Modal'
+import MovieItem from 'components/MovieItem'
 import styles from './favorites.module.scss'
 
 const Favorites = () => {

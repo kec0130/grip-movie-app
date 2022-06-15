@@ -25,67 +25,9 @@
   }
 }
 
-.movieWrapper {
-  max-width: sizes.$MAX_WIDTH;
-  height: 150px;
-  margin: 0 auto;
-  background-color: colors.$WHITE;
-  border-radius: 16px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 12%), 0 6px 10px 0 rgba(colors.$BLACK, 8%);
-  overflow: hidden;
-
-  + .movieWrapper {
-    margin-top: 20px;
-  }
-
-  .movieItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-
-    .movieInfo {
-      display: flex;
-    }
-
-    img {
-      flex-shrink: 0;
-      width: 110px;
-      height: 150px;
-      object-fit: cover;
-    }
-
-    .movieInfoText {
-      padding: 16px 0 0 20px;
-      text-align: start;
-      color: colors.$GRAY6;
-
-      :first-child {
-        margin-bottom: 10px;
-        color: colors.$GRAY2;
-        font-size: 18px;
-        font-weight: 600;
-      }
-
-      :last-child {
-        margin-top: 4px;
-      }
-    }
-
-    svg {
-      margin: 0 20px 0 10px;
-      fill: colors.$GRAY6;
-
-      &.liked {
-        fill: colors.$PINK;
-      }
-    }
-  }
-}
-
 .noResult {
   @include position.middleBox;
-  text-align: center;
   font-size: 18px;
   color: colors.$GRAY3;
+  text-align: center;
 }
