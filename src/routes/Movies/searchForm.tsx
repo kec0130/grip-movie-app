@@ -1,15 +1,16 @@
-import { ChangeEvent, FormEvent } from 'react'
-import { useRecoilState, useResetRecoilState } from 'recoil'
-import { inputValueState, keywordState, pageState, searchResultState } from 'states/movie'
+import { ChangeEvent, FormEvent, useState } from 'react'
+
+import { useRecoil } from 'hooks/useRecoil'
+import { keywordState, pageState, searchResultState } from 'states/movie'
 
 import { SearchIcon } from 'assets/svgs'
 import styles from './movies.module.scss'
 
 const SearchForm = () => {
-  const [inputValue, setInputValue] = useRecoilState(inputValueState)
-  const [keyword, setKeyword] = useRecoilState(keywordState)
-  const resetPage = useResetRecoilState(pageState)
-  const resetMovies = useResetRecoilState(searchResultState)
+  const [keyword, setKeyword] = useRecoil(keywordState)
+  const [inputValue, setInputValue] = useState(keyword)
+  const [, , resetPage] = useRecoil(pageState)
+  const [, , resetMovies] = useRecoil(searchResultState)
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value)
@@ -17,7 +18,7 @@ const SearchForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!inputValue.trim() || inputValue === keyword) return
+    if (!inputValue.trim()) return
 
     resetMovies()
     resetPage()
@@ -28,7 +29,12 @@ const SearchForm = () => {
     <form onSubmit={handleSubmit} className={styles.searchForm}>
       <div className={styles.inputWrapper}>
         <SearchIcon />
-        <input type='text' value={inputValue} onChange={handleInputChange} placeholder='영화 제목을 입력하세요.' />
+        <input
+          type='text'
+          value={inputValue}
+          onChange={handleInputChange}
+          placeholder='영화 제목을 영어로 입력하세요.'
+        />
       </div>
     </form>
   )
