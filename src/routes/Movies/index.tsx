@@ -1,33 +1,36 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from 'react-query'
 
 import { useRecoil } from 'hooks/useRecoil'
-import { keywordState, pageState } from 'states/movie'
+import { searchKeywordState, pageState, searchResultState } from 'states/movie'
 import { getMovieSearchApi } from 'services/movie'
 
 import Header from 'components/Header'
-import MovieItem from 'components/MovieItem'
-import Error from 'components/Error'
-import Loading from 'components/Loading'
 import SearchForm from './searchForm'
+import SearchResult from './SearchResult'
 
 const Movies = () => {
-  const [keyword] = useRecoil(keywordState)
-  const [page, setPage] = useRecoil(pageState)
-  const [showError, setShowError] = useState(true)
+  const [page] = useRecoil(pageState)
+  const [searchKeyword] = useRecoil(searchKeywordState)
+  const [, setSearchResult] = useRecoil(searchResultState)
+  const [totalCount, setTotalCount] = useState(0)
 
   const { data, isLoading } = useQuery(
-    ['getMovieSearchApi', keyword],
-    () => getMovieSearchApi({ s: keyword, page }).then((res) => res.data.Search),
+    ['getMovieSearchApi', searchKeyword, page],
+    () =>
+      getMovieSearchApi({ s: searchKeyword, page }).then((res) => {
+        setTotalCount(Number(res.data.totalResults || 0))
+        return res.data.Search
+      }),
     {
       refetchOnWindowFocus: false,
-      enabled: !!keyword,
+      enabled: !!searchKeyword,
+      onSuccess: (currentData): void => {
+        if (!currentData) return
+        setSearchResult((prev) => [...prev, ...currentData])
+      },
     }
   )
-
-  useEffect(() => {
-    setShowError(!data)
-  }, [data])
 
   return (
     <>
@@ -35,13 +38,7 @@ const Movies = () => {
         <SearchForm />
       </Header>
       <main>
-        {isLoading && <Loading />}
-        {!isLoading && showError && <Error message='검색 결과가 없습니다.' />}
-        <ul>
-          {data?.map((movie) => (
-            <MovieItem key={movie.imdbID} movie={movie} />
-          ))}
-        </ul>
+        <SearchResult data={data} isLoading={isLoading} totalCount={totalCount} />
       </main>
     </>
   )

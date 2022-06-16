@@ -29,10 +29,3 @@
     }
   }
 }
-
-.noResult {
-  @include position.middleBox;
-  font-size: 18px;
-  color: colors.$GRAY3;
-  text-align: center;
-}

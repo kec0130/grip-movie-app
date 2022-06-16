@@ -1,16 +1,16 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 
 import { useRecoil } from 'hooks/useRecoil'
-import { keywordState, pageState, searchResultState } from 'states/movie'
+import { searchKeywordState, pageState, searchResultState } from 'states/movie'
 
 import { SearchIcon } from 'assets/svgs'
 import styles from './movies.module.scss'
 
 const SearchForm = () => {
-  const [keyword, setKeyword] = useRecoil(keywordState)
-  const [inputValue, setInputValue] = useState(keyword)
   const [, , resetPage] = useRecoil(pageState)
-  const [, , resetMovies] = useRecoil(searchResultState)
+  const [, , resetSearchResult] = useRecoil(searchResultState)
+  const [searchKeyword, setSearchKeyword] = useRecoil(searchKeywordState)
+  const [inputValue, setInputValue] = useState(searchKeyword)
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value)
@@ -18,11 +18,11 @@ const SearchForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!inputValue.trim()) return
+    if (!inputValue.trim() || inputValue === searchKeyword) return
 
-    resetMovies()
     resetPage()
-    setKeyword(inputValue)
+    resetSearchResult()
+    setSearchKeyword(inputValue)
   }
 
   return (
