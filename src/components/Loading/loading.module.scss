@@ -1,0 +1,21 @@
+@use '/src/styles/constants/colors';
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 10px;
+  border: 4px solid colors.$GRAY6;
+  border-top: 4px solid colors.$PINK;
+  border-radius: 50%;
+  animation: rotation 0.6s ease-in-out infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
