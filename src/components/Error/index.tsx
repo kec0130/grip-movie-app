@@ -1,11 +1,11 @@
 import { ErrorIcon } from 'assets/svgs'
 import styles from './error.module.scss'
 
-interface IProps {
+interface ErrorProps {
   message: string
 }
 
-const Error = ({ message }: IProps) => {
+const Error = ({ message }: ErrorProps) => {
   return (
     <div className={styles.error}>
       <ErrorIcon />

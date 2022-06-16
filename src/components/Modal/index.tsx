@@ -6,8 +6,8 @@ import { useRecoil } from 'hooks/useRecoil'
 import { favoriteMovieState } from 'states/movie'
 import { IMovie } from 'types/movie'
 
-import ModalPortal from './portal'
 import MovieInfo from 'components/MovieInfo'
+import ModalPortal from './portal'
 import styles from './modal.module.scss'
 
 interface ModalProps {
@@ -26,16 +26,19 @@ const Modal = ({ movie, isFavorite, closeModal }: ModalProps) => {
   }
 
   const addFavoriteMovie = () => {
-    setFavoriteMovies((prev) => [movie, ...prev])
+    const newFavoriteMovies = [movie, ...favoriteMovies]
+    setFavoriteMovies(newFavoriteMovies)
+    store.set('favoriteMovies', newFavoriteMovies)
   }
 
   const deleteFavoriteMovie = () => {
-    setFavoriteMovies((prev) => prev.filter((item) => item.imdbID !== imdbID))
+    const newFavoriteMovies = favoriteMovies.filter((item) => item.imdbID !== imdbID)
+    setFavoriteMovies(newFavoriteMovies)
+    store.set('favoriteMovies', newFavoriteMovies)
   }
 
   const toggleFavorite = () => {
     isFavorite ? deleteFavoriteMovie() : addFavoriteMovie()
-    store.set('favoriteMovies', favoriteMovies)
     closeModal()
   }
 

@@ -12,6 +12,7 @@ import styles from './favorites.module.scss'
 const Favorites = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [favoriteMovies, setFavoriteMovies] = useRecoil(favoriteMovieState)
+  const isError = !isLoading && !favoriteMovies.length
 
   useEffect(() => {
     setFavoriteMovies(store.get('favoriteMovies') || [])
@@ -27,7 +28,7 @@ const Favorites = () => {
         {favoriteMovies.map((movie) => (
           <MovieItem key={movie.imdbID} movie={movie} />
         ))}
-        {!isLoading && !favoriteMovies.length && <Error message='즐겨찾기한 영화가 없습니다.' />}
+        {isError && <Error message='즐겨찾기한 영화가 없습니다.' />}
       </main>
     </>
   )
