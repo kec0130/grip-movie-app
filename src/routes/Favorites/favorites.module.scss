@@ -1,0 +1,8 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/position';
+
+.header {
+  margin: auto 0;
+  font-size: 18px;
+  font-weight: 500;
+}

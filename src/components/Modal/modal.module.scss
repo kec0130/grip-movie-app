@@ -1,0 +1,46 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/sizes';
+@use '/src/styles/constants/levels';
+@use '/src/styles/mixins/position';
+
+.background {
+  @include position.fixed(0 0 0 0);
+  z-index: levels.$MODAL;
+  background-color: rgba(0, 0, 0, 70%);
+  backdrop-filter: blur(10px);
+}
+
+.modalWrapper {
+  @include position.middleBox;
+  width: 90%;
+  max-width: 400px;
+  overflow: hidden;
+  text-align: center;
+  background: colors.$BACKGROUND;
+  border-radius: sizes.$BORDER_RADIUS;
+
+  .poster {
+    position: relative;
+    height: 500px;
+    background-position: center;
+    background-size: cover;
+    border-bottom: 1px solid colors.$GRAY3;
+
+    > div {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+    }
+  }
+
+  button {
+    width: 50%;
+    height: 50px;
+    font-size: 16px;
+    color: colors.$GRAYE;
+
+    + button {
+      border-left: 1px solid colors.$GRAY3;
+    }
+  }
+}

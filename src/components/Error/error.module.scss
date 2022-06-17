@@ -1,0 +1,16 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/position';
+
+.error {
+  @include position.middleBox;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+  color: colors.$GRAYA;
+
+  svg {
+    margin-bottom: 20px;
+    fill: currentcolor;
+  }
+}

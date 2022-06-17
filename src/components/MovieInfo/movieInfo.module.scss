@@ -1,0 +1,22 @@
+@use '/src/styles/constants/colors';
+
+.movieInfo {
+  h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    color: colors.$GRAYE;
+  }
+
+  span {
+    font-size: 14px;
+    color: colors.$GRAYA;
+
+    + span {
+      padding-left: 7px;
+      margin-left: 7px;
+      border-left: 1px solid colors.$GRAYA;
+    }
+  }
+}

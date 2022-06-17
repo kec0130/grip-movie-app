@@ -1,0 +1,9 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/sizes';
+
+.container {
+  min-height: 100vh;
+  padding: calc(sizes.$HEADER_HEIGHT + 10px) 16px 90px;
+  margin: 0 auto;
+  background-color: colors.$BACKGROUND;
+}

@@ -1,9 +1,0 @@
-@use '/src/styles/constants/colors';
-@use '/src/styles/constants/sizes';
-
-.container {
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: calc(sizes.$HEADER_H + 18px) 16px 90px;
-  background-color: colors.$GRAYD;
-}

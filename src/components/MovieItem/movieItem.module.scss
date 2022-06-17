@@ -1,0 +1,47 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/sizes';
+
+.movieWrapper {
+  max-width: sizes.$MAX_WIDTH;
+  height: sizes.$MOVIE_ITEM_HEIGHT;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: colors.$ITEM_BACKGROUND;
+  border-radius: sizes.$BORDER_RADIUS;
+
+  + .movieWrapper {
+    margin-top: 20px;
+  }
+
+  .movieItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .movieInfo {
+      display: flex;
+
+      img {
+        flex-shrink: 0;
+        width: 110px;
+        height: sizes.$MOVIE_ITEM_HEIGHT;
+        object-fit: cover;
+      }
+
+      > div {
+        padding: 16px 0 16px 20px;
+        text-align: start;
+      }
+    }
+
+    svg {
+      margin: 0 20px 0 10px;
+      fill: colors.$GRAYA;
+
+      &.liked {
+        fill: colors.$PINK;
+      }
+    }
+  }
+}
